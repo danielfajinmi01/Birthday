@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Martha Oratokhai</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1e293b 100%);
+            color: #fff;
+            min-height: 100vh;
+            scrollbar-color: rgba(59, 130, 246, 0.5) transparent;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(59, 130, 246, 0.8);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.25rem;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-brand:hover {
+            color: #93c5fd;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: transparent;
+            color: #93c5fd;
+        }
+
+        .nav-btn.active {
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .nav-btn:hover:not(.active) {
+            color: #fff;
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+            padding-top: 4rem;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* HOME PAGE */
+        .home-container {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .background-decoration {
+            position: absolute;
+            border-radius: 50%;
+            mix-blend-mode: multiply;
+            filter: blur(80px);
+            opacity: 0.2;
+        }
+
+        .bg-blob-1 {
+            width: 384px;
+            height: 384px;
+            background: #3b82f6;
+            top: 0;
+            right: 0;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .bg-blob-2 {
+            width: 384px;
+            height: 384px;
+            background: #60a5fa;
+            bottom: 0;
+            left: 0;
+            animation: pulse 4s ease-in-out infinite 2s;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .home-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 800px;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .heart-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: bounce 2s infinite;
+            display: inline-block;
+            color: #ef4444;
+        }
+
+        .heart-icon i {
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .home-content h1 {
+            font-size: clamp(2.5rem, 10vw, 4rem);
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .home-content h2 {
+            font-size: clamp(2rem, 8vw, 3rem);
+            font-weight: 300;
+            color: #fcd34d;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .home-subtitle {
+            font-size: 1.1rem;
+            color: #93c5fd;
+            font-weight: 300;
+            line-height: 1.8;
+            max-width: 500px;
+            margin: 2rem auto;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @media (min-width: 640px) {
+            .button-group {
+                flex-direction: row;
+            }
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            min-width: 200px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: #fff;
+            box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 40px rgba(37, 99, 235, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .divider {
+            width: 48px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #fcd34d, transparent);
+            margin: 2rem auto;
+        }
+
+        .blessing-message {
+            font-size: 0.875rem;
+            color: #7dd3fc;
+            font-weight: 300;
+            margin-top: 2rem;
+        }
+
+        /* PHOTOS PAGE */
+        .photos-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 1rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h2 {
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #93c5fd;
+            font-weight: 300;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .photo-card {
+            position: relative;
+            height: 280px;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            cursor: pointer;
+            transition: all 0.5s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .photo-card:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .photo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s;
+        }
+
+        .photo-card:hover .photo-image {
+            filter: brightness(1.1);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 1.5rem;
+            color: white;
+            z-index: 10;
+        }
+
+        .photo-title {
+            font-size: 1.125rem;
+            color: #fff;
+            font-weight: 300;
+        }
+
+        .back-button {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .back-button a {
+            color: #93c5fd;
+            text-decoration: none;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button a:hover {
+            color: #fff;
+        }
+
+        /* WISHES PAGE */
+        .wishes-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 1rem;
+        }
+
+        .wish-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .wish-item:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateX(8px);
+        }
+
+        .wish-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .wish-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .wish-name {
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .wish-date {
+            color: #93c5fd;
+            font-size: 0.875rem;
+            font-weight: 300;
+            margin-left: auto;
+        }
+
+        .wish-message {
+            color: #dbeafe;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .wishes-count {
+            color: #93c5fd;
+            font-size: 0.9rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .nav-buttons {
+                gap: 0.5rem;
+            }
+
+            .nav-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .wish-header {
+                flex-wrap: wrap;
+            }
+
+            .wish-date {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-brand" onclick="switchPage('home')"><i class="fas fa-birthday-cake"></i> Martha's Birthday</div>
+            <div class="nav-buttons">
+                <button class="nav-btn active" onclick="switchPage('home')">Home</button>
+                <button class="nav-btn" onclick="switchPage('photos')">Photos</button>
+                <button class="nav-btn" onclick="switchPage('wishes')">Wishes</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <div class="home-container">
+            <div class="background-decoration bg-blob-1"></div>
+            <div class="background-decoration bg-blob-2"></div>
+            
+            <div class="home-content">
+                <div class="heart-icon"><i class="fas fa-heart"></i></div>
+                <h1>Happy Birthday</h1>
+                <h2>Martha Oratokhai</h2>
+                
+                <p class="home-subtitle">
+                    A celebration of grace, wisdom, and beautiful moments shared together. May this day be filled with joy and countless blessings.
+                </p>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="switchPage('photos')">
+                        <i class="fas fa-images"></i> Photo Album
+                    </button>
+                    <button class="btn btn-secondary" onclick="switchPage('wishes')">
+                        <i class="fas fa-heart"></i> Wishes & Letters
+                    </button>
+                </div>
+
+                <div class="divider"></div>
+                <p class="blessing-message">
+                    <i class="fas fa-star"></i> Wishing you health, happiness, and prosperity in the year ahead <i class="fas fa-star"></i>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHOTOS PAGE -->
+    <div id="photos" class="page">
+        <div class="photos-container">
+            <div class="page-header">
+                <h2>Photo Album</h2>
+                <p>Memories and moments to treasure</p>
+            </div>
+
+            <div class="photo-grid" id="photoGrid"></div>
+
+            <div class="back-button">
+                <a onclick="switchPage('home')"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- WISHES PAGE -->
+    <div id="wishes" class="page">
+        <div class="wishes-container">
+            <div class="page-header">
+                <h2>Wishes & Letters</h2>
+                <p>Messages of love and celebration</p>
+            </div>
+
+            <div>
+                <div class="wishes-count">Messages of Love & Blessings (<span id="wishCount">2</span>)</div>
+                <div class="wishes-list" id="wishesList"></div>
+            </div>
+
+            <div class="back-button">
+                <a onclick="switchPage('home')"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const photos = [
+            { id: 1, title: 'Precious Moments with Family', image: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0[...]' },
+            { id: 2, title: 'Beautiful Gatherings', image: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgy[...]' },
+            { id: 3, title: 'Celebrating Life', image: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4z[...]' },
+            { id: 4, title: 'Elegance and Grace', image: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/7QBEUGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAACgcAigAIkZCTUQzMDAwMDIyZDAyMDAwMDE4MWYwMTAwMzllMT[...]' },
+            { id: 5, title: 'Graduation Day Joy', image: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/7QBEUGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAACgcAigAIkZCTUQzMDAwMDI1ZDAyMDAwMGY0MzAwNDAwMGQ3OT[...]' },
+        ];
+
+        const wishes = [
+            {
+                name: 'Family & Friends',
+                date: 'May 10, 2026',
+                message: 'Wishing Martha a day filled with love, laughter, and all the happiness she deserves. Thank you for being an inspiration to all of us!'
+            },
+            {
+                name: 'Loved Ones',
+                date: 'May 10, 2026',
+                message: 'May your special day be as wonderful and beautiful as you are. Here\'s to health, happiness, and many more years of blessings!'
+            }
+        ];
+
+        function switchPage(pageName) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // Show selected page
+            document.getElementById(pageName).classList.add('active');
+
+            // Update nav buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Load content for specific pages
+            if (pageName === 'photos') {
+                loadPhotos();
+            } else if (pageName === 'wishes') {
+                loadWishes();
+            }
+        }
+
+        function loadPhotos() {
+            const photoGrid = document.getElementById('photoGrid');
+            photoGrid.innerHTML = '';
+
+            photos.forEach(photo => {
+                const photoCard = document.createElement('div');
+                photoCard.className = 'photo-card';
+                photoCard.innerHTML = `
+                    <img src="${photo.image}" alt="${photo.title}" class="photo-image">
+                    <div class="photo-overlay">
+                        <div class="photo-title">${photo.title}</div>
+                    </div>
+                `;
+                photoGrid.appendChild(photoCard);
+            });
+        }
+
+        function loadWishes() {
+            const wishesList = document.getElementById('wishesList');
+            wishesList.innerHTML = '';
+
+            wishes.forEach(wish => {
+                const wishItem = document.createElement('div');
+                wishItem.className = 'wish-item';
+                wishItem.innerHTML = `
+                    <div class="wish-header">
+                        <div class="wish-avatar"><i class="fas fa-heart"></i></div>
+                        <div class="wish-name">${wish.name}</div>
+                        <div class="wish-date">${wish.date}</div>
+                    </div>
+                    <div class="wish-message">${wish.message}</div>
+                `;
+                wishesList.appendChild(wishItem);
+            });
+        }
+
+        // Load initial content
+        loadPhotos();
+        loadWishes();
+    </script>
+</body>
+</html>
